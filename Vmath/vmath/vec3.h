@@ -10,6 +10,7 @@ namespace vmath
 	struct Vec3
 	{
 		T x, y, z;
+		Vec3() : x(0), y(0), z(0)
 		Vec3(T value) : x(value), y(value), z(value) {}
 		Vec3(T value_x, T value_y, T value_z) : x(value_x), y(value_y), z(value_z) {}
 
@@ -81,6 +82,11 @@ namespace vmath
 			z *= inv;
 			return *this;
 		}
+
+		void normalize()
+		{
+			this* /= length();
+		}
 	};
 
 	using Vec3i = Vec3<int>;
@@ -101,9 +107,5 @@ namespace vmath
 			           v1.x * v2.y - v2.x * v1.y);
 	}
 	
-	template<class T>
-	Vec3<T> normalize(const Vec3<T>& v)
-	{
-		return v / v.length();
-	}
+	
 }
